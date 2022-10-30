@@ -47,6 +47,8 @@ class TestArtist(TestCase):
         self.artist_2 = Artist(testdata_2)
 
     def test_collaborators(self):
+        self.assertIsNone(self.artist_0.collaborators)
+        self.assertEqual(0, len(self.artist_1.collaborators))
         self.assertEqual(2, len(self.artist_2.collaborators))
 
     def test_realname(self):
@@ -68,4 +70,9 @@ class TestArtist(TestCase):
     def test_str(self):
         self.assertEqual("Frank Stamps (2309551)", self.artist_0.__str__())
         self.assertEqual("Frank Stamps (2309551)", self.artist_1.__str__())
+        self.assertEqual("Mr. & Mrs. Ernest Stoneman (2968305)", self.artist_2.__str__())
 
+    def test_level(self):
+        self.assertEqual(0, self.artist_0.level)
+        self.assertEqual(0, self.artist_1.level)
+        self.assertEqual(0, self.artist_2.level)
