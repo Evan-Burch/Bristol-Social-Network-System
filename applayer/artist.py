@@ -10,7 +10,12 @@ class Artist(object):
         Takes a mongodb dictionary from the Artist collection and creates an Artist object
         :param raw_in: dictionary based on schema from mongo database
         """
-        pass
+        self.__artistID: int = int(raw_in['artistID'])
+        self.__artistName: str = str(raw_in['artistName'])
+        self.__realName: str = (raw_in['realname'])
+        self.__profile: str = str(raw_in['profile'])
+        self.__level: int = int(raw_in['level'])
+        self.__collaborators: List[dict] = list[dict](raw_in['collaborators'])
 
     @dispatch(int, str, str, str, int)
     def __init__(self, aid: int, name: str, real_name: str, profile: str, level: int):
@@ -22,35 +27,40 @@ class Artist(object):
         :param profile: artist profile
         :param level: artist level
         """
-        pass
+        self.__artistID: int = aid
+        self.__artistName: str = name
+        self.__realName: str = real_name
+        self.__profile: str = profile
+        self.__level: int = level
+        self.__collaborators = None
 
     @property
     def artistID(self) -> int:
-        pass
+        return self.__artistID
 
     @property
     def artistName(self) -> str:
-        pass
+        return self.__artistName
 
     @property
     def realName(self) -> str:
-        pass
+        return self.__realName
 
     @property
     def profile(self) -> str:
-        pass
+        return self.__profile
 
     @property
     def level(self) -> int:
-        pass
+        return self.__level
 
     @property
     def collaborators(self) -> List[dict]:
-        pass
+        return self.__collaborators
 
     @level.setter
     def level(self, lev: int) -> None:
-        pass
+        self.__level = lev
 
     def __str__(self):
         """
@@ -58,4 +68,4 @@ class Artist(object):
         ex. Alcoa Quartet (1141480)
         :return: string formatted as in example
         """
-        pass
+        return self.__artistName + " (" + str(self.__artistID) + ")"
