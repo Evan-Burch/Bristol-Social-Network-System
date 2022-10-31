@@ -76,3 +76,16 @@ class TestArtist(TestCase):
         self.assertEqual(0, self.artist_0.level)
         self.assertEqual(0, self.artist_1.level)
         self.assertEqual(0, self.artist_2.level)
+
+    def test_level_setter(self):
+        self.assertEqual(0, self.artist_1.level)
+        self.artist_1.level = 2
+        self.assertEqual(2, self.artist_1.level)
+        self.assertNotEqual(0, self.artist_1.level)
+
+    def test_bad_data(self):
+        self.assertIsInstance(self.artist_1.artistID, int)
+        self.assertIsInstance(self.artist_1.artistName, str)
+        self.assertIsInstance(self.artist_0.realName, str)
+        self.assertIsInstance(self.artist_1.profile, str)
+        self.assertIsInstance(self.artist_1.level, int)
