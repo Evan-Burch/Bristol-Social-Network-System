@@ -18,7 +18,18 @@ class ArtistList(object):
         Use a Mongobridge object to pull data from the Mongo database; the artists attribute
         must be a sorted list.
         """
-        pass
+        self.__mongo_bridge = MongoBridge()
+        self.__artist_objects: List[Artist] = []
+        self.__artists: List[Tuple[int, str]] = []
+
+        self.__list_of_dicts = self.__mongo_bridge.get_artists_from_list(ids)
+        for i in self.__list_of_dicts:
+            self.__artist_objects.append(Artist(i))
+
+        for i in self.__artist_objects:
+            self.__artists.append((i.artistID, i.artistName))
+
+        self.__artists.sort(key=lambda artists: artists[1])
 
     @dispatch()
     def __init__(self):
@@ -27,7 +38,18 @@ class ArtistList(object):
         class; the artists attribute must be a sorted list.
         Use a Mongobridge object to pull data from the Mongo database
         """
-        pass
+        self.__mongo_bridge = MongoBridge()
+        self.__artist_objects: List[Artist] = []
+        self.__artists: List[Tuple[int, str]] = []
+
+        self.__list_of_dicts = self.__mongo_bridge.get_all_artists()
+        for i in self.__list_of_dicts:
+            self.__artist_objects.append(Artist(i))
+
+        for i in self.__artist_objects:
+            self.__artists.append((i.artistID, i.artistName))
+
+        self.__artists.sort(key=lambda artists: artists[1])
 
     @property
     def artists(self) -> List[Tuple[int, str]]:
@@ -35,7 +57,7 @@ class ArtistList(object):
         Returns the list of artists as list of tuples of (artistid: int, name: str)
         :return: list of artists
         """
-        pass
+        return self.__artists
 
     @property
     def artist_objects(self) -> List[Artist]:
@@ -43,7 +65,7 @@ class ArtistList(object):
         Returns the list of Artist objects
         :return:
         """
-        pass
+        return self.__artist_objects
 
     def __str__(self) -> str:
         """
@@ -53,4 +75,10 @@ class ArtistList(object):
         the Artist class
         :return: str
         """
-        pass
+        #result: str = self.__artist_objects[0].__str__()
+        result: str = ""
+        for i in self.__artist_objects:
+            result += i.__str__() + ", "
+        result = result.rstrip(result[-1])
+        result = result.rstrip(result[-1])
+        return result
