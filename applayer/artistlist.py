@@ -79,6 +79,7 @@ class ArtistList(object):
         result: str = ""
         for i in self.__artist_objects:
             result += i.__str__() + ", "
-        result = result.rstrip(result[-1])
-        result = result.rstrip(result[-1])
+        if len(self.__artist_objects) > 0:
+            result = result.rstrip(result[-1])
+            result = result.rstrip(result[-1])
         return result
