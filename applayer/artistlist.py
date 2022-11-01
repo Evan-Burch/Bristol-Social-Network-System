@@ -1,3 +1,4 @@
+# Edited by Evan Burch
 from typing import List, Tuple
 from applayer.artist import Artist
 from datalayer.mongobridge import MongoBridge

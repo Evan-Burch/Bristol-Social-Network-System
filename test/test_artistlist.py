@@ -1,3 +1,4 @@
+# Edited by Evan Burch
 from unittest import TestCase
 from applayer.artistlist import ArtistList
 

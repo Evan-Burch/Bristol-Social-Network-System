@@ -1,3 +1,4 @@
+# Edited by Evan Burch
 import pymongo
 from typing import List, Any
 from multipledispatch import dispatch
